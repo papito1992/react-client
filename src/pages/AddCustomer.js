@@ -39,7 +39,7 @@ const AddCustomer = () => {
                 JSON.stringify({
                     'username': formState.inputs.username.value,
                     'email': formState.inputs.email.value,
-                    'representativeIsbn': "default",
+                    'representativeIsbn': "defaultRep",
                     'hasRepresentation': false
                 })
                 ,
