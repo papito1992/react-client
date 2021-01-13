@@ -1,15 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 
-import CustomerListDetails from "./CustomerListDetails";
-import {useHttpClient} from "../shared/hooks/http-hook";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import {AuthContext} from "../shared/context/auth-context";
+import CustomerListDetails from "../Customer/CustomerListDetails";
+import {useHttpClient} from "../../shared/hooks/http-hook";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import {AuthContext} from "../../shared/context/auth-context";
 
-const CustomerList = () => {
+const RepresentativeList = () => {
     const auth = useContext(AuthContext);
-    const [loadedCustomers, setLoadedCustomers] = useState([]);
-    const [customerDeleted, setCustomerDeleted] = useState(false);
+    const [loadedCustomers, setLoadedCustomers] = useState();
     const {isLoading, error, sendRequest, clearError} = useHttpClient();
 
     useEffect(() => {
@@ -28,17 +27,12 @@ const CustomerList = () => {
             }
         };
         fetchCustomers();
-    }, [sendRequest, setLoadedCustomers, customerDeleted]);
+    }, [sendRequest]);
 
-    const customerDeletedHandler = deletedCustomerId => {
-        setLoadedCustomers(prevCustomers => {
-            prevCustomers.filter(prevCustomer => {
-                    return prevCustomer.customerId !== deletedCustomerId
-                }
-            )
-            }
+    const repDeletedHandler = deletedCustomerId => {
+        setLoadedCustomers(prevCustomers =>
+            prevCustomers.filter(customer => customer.id !== deletedCustomerId)
         );
-        setCustomerDeleted(!customerDeleted);
     };
 
     return (
@@ -50,9 +44,9 @@ const CustomerList = () => {
                 </div>
             )}
             {!isLoading && loadedCustomers && (
-                <CustomerListDetails items={loadedCustomers} onDeleteCustomer={customerDeletedHandler}/>
+                <CustomerListDetails items={loadedCustomers} onDeleteRep={repDeletedHandler}/>
             )}
         </React.Fragment>
     );
 };
-export default CustomerList;
+export default RepresentativeList;

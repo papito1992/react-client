@@ -1,14 +1,14 @@
 import React, {useContext, useState} from 'react';
 
 
-import './CustomerItem.css'
-import {useHttpClient} from "../shared/hooks/http-hook";
-import {AuthContext} from "../shared/context/auth-context";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import Modal from "../shared/components/UIElements/Modal";
-import Button from "../shared/components/FormElements/Button";
-import Card from "../shared/components/UIElements/Card";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import '../Customer/CustomerItem.css'
+import {useHttpClient} from "../../shared/hooks/http-hook";
+import {AuthContext} from "../../shared/context/auth-context";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import Modal from "../../shared/components/UIElements/Modal";
+import Button from "../../shared/components/FormElements/Button";
+import Card from "../../shared/components/UIElements/Card";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 const Customer = props => {
     const {isLoading, error, sendRequest, clearError} = useHttpClient();

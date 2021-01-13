@@ -4,9 +4,9 @@ import MainNavigation from './shared/components/Navigation/MainNavigation';
 import {AuthContext} from './shared/context/auth-context';
 import {useAuth} from './shared/hooks/auth-hook';
 import Auth from "./shared/Auth/Auth";
-import AddCustomer from "./pages/AddCustomer";
-import CustomerList from "./pages/CustomerList";
-import UpdateCustomer from "./pages/UpdateCustomer";
+import AddCustomer from "./pages/Customer/AddCustomer";
+import CustomerList from "./pages/Customer/CustomerList";
+import UpdateCustomer from "./pages/Customer/UpdateCustomer";
 
 const App = () => {
     const {token, login, logout, userId} = useAuth();

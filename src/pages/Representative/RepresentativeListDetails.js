@@ -1,8 +1,8 @@
 import React from 'react';
-import Customer from "./Customer"
+import Customer from "../Customer/Customer"
 import Grid from "@material-ui/core/Grid";
-import Card from "../shared/components/UIElements/Card";
-import Button from "../shared/components/FormElements/Button";
+import Card from "../../shared/components/UIElements/Card";
+import Button from "../../shared/components/FormElements/Button";
 
 const CustomerList = props => {
     if (props.items.length === 0) {

@@ -3,17 +3,17 @@ import {useHistory, useParams} from 'react-router-dom';
 
 
 import './CustomerForm.css';
-import {AuthContext} from "../shared/context/auth-context";
-import {useHttpClient} from "../shared/hooks/http-hook";
-import {useForm} from "../shared/hooks/form-hook";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import Card from "../shared/components/UIElements/Card";
+import {AuthContext} from "../../shared/context/auth-context";
+import {useHttpClient} from "../../shared/hooks/http-hook";
+import {useForm} from "../../shared/hooks/form-hook";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import Card from "../../shared/components/UIElements/Card";
 import 'react-widgets/dist/css/react-widgets.css';
 import DropdownList from 'react-widgets/lib/DropdownList'
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import Input from "../shared/components/FormElements/Input";
-import {VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE} from "../shared/util/validators";
-import Button from "../shared/components/FormElements/Button";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import Input from "../../shared/components/FormElements/Input";
+import {VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE} from "../../shared/util/validators";
+import Button from "../../shared/components/FormElements/Button";
 
 const UpdateCustomer = () => {
         const auth = useContext(AuthContext);
@@ -194,8 +194,10 @@ const UpdateCustomer = () => {
                             initialValid={true}
                             disabled={true}
                         />
-                        <p>ACTIVE Representative: Unique name: {loadedCustomer.representativeIsbn}</p>
-                        <p>ACTIVE Representative: currentRep name: {currentRep.username}</p>
+                        <p>Representatives: Unique name: {loadedCustomer.representativeIsbn}</p>
+                        <p>Representatives: Username: {currentRep.username}</p>
+                        <p>Representatives: Email: {currentRep.email}</p>
+                        <h3>Update or Add Representative!</h3>
                         <DropdownList
                             allowCreate={false}
                             onChange={representativeChangeHandler}
