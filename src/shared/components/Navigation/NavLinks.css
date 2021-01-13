@@ -1,0 +1,65 @@
+.nav-links List {
+  margin: 1rem;
+}
+
+.nav-links a {
+  border: 1px solid transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 0.35rem;
+  width: 100%;
+  opacity: 0.7;
+}
+
+.nav-links a:hover,
+.nav-links a:active,
+.nav-links a.active {
+  background: rgb(19, 94, 177);
+  opacity: 0.9;
+  color: #ffffff;
+  text-align: center;
+}
+
+.nav-links button:focus {
+  outline: none;
+}
+
+.nav-links button:hover,
+.nav-links button:active {
+  background: #ffffff;
+  color: #932d2d;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    flex-direction: row;
+  }
+
+  .nav-links li {
+    margin: 0 0.5rem;
+  }
+
+  .nav-links a {
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .nav-links button {
+    border: 1px solid #0e0d0d;
+    color: #000000;
+    background: transparent;
+  }
+  
+  .nav-links button:hover,
+  .nav-links button:active {
+    background: #de8c0a;
+    color: #292929;
+  }
+  .button-links {
+    background: #000000;
+    color: #bf8b34;
+    width: 100%;
+  }
+
+}

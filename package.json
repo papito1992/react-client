@@ -1,0 +1,46 @@
+{
+  "name": "react-crud",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "4.x",
+    "@material-ui/data-grid": "^4.0.0-alpha.15",
+    "@material-ui/icons": "4.x",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "clsx": "^1.1.1",
+    "github-markdown-css": "4.x",
+    "material-ui-shell": "1.x",
+    "react": "17.x",
+    "react-custom-scrollbars": "4.x",
+    "react-dom": "17.x",
+    "react-markdown": "5.x",
+    "react-router-dom": "5.x",
+    "react-scripts": "4.0.1",
+    "react-widgets": "^5.0.0-beta.22",
+    "react-window": "1.x"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

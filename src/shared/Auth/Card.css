@@ -1,0 +1,17 @@
+.card__header {
+  color: white;
+  text-align: center;
+}
+
+.card {
+  width: 90%;
+  height: 50%;
+  max-width: 25rem;
+  margin: 7rem auto;
+  text-align: center;
+  color: black;
+}
+
+.card form {
+  margin-bottom: 1rem;
+}
