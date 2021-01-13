@@ -8,7 +8,7 @@ import {useHttpClient} from "../shared/hooks/http-hook";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import Input from "../shared/components/FormElements/Input";
-import {VALIDATOR_EMAIL, VALIDATOR_MINLENGTH} from "../shared/util/validators";
+import {VALIDATOR_EMAIL, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH} from "../shared/util/validators";
 
 import Card from "../shared/components/UIElements/Card";
 
@@ -64,8 +64,8 @@ const AddCustomer = () => {
                             element="input"
                             type="text"
                             label="USERNAME"
-                            validators={[VALIDATOR_MINLENGTH(6)]}
-                            errorText="Please enter a valid username. Min length 6!"
+                            validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_MAXLENGTH(20)]}
+                            errorText="Please enter a valid username. Min length 6! Max length 20!"
                             onInput={inputHandler}
                         />
                         <Input
@@ -73,8 +73,8 @@ const AddCustomer = () => {
                             element="input"
                             type="email"
                             label="EMAIL"
-                            validators={[VALIDATOR_EMAIL]}
-                            errorText="Please enter a valid email."
+                            validators={[VALIDATOR_EMAIL, VALIDATOR_MAXLENGTH(50)]}
+                            errorText="Please enter a valid email. Max length 50!"
                             onInput={inputHandler}
                         />
                         <Button type="submit" disabled={!formState.isValid}>

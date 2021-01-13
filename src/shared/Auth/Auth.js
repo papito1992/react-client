@@ -61,7 +61,7 @@ const Auth = () => {
                         element="input"
                         id="name"
                         type="text"
-                        label="Your Name"
+                        label="Your Name(megaUser)"
                         validators={[VALIDATOR_REQUIRE()]}
                         errorText="Please enter a name."
                         onInput={inputHandler}
@@ -70,7 +70,7 @@ const Auth = () => {
                         element="input"
                         id="password"
                         type="password"
-                        label="Password"
+                        label="Password(megaUser)"
                         validators={[VALIDATOR_MINLENGTH(6)]}
                         errorText="Please enter a valid password, at least 6 characters."
                         onInput={inputHandler}
