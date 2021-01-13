@@ -204,16 +204,16 @@ const UpdateCustomer = () => {
                             initialValid={true}
                             defaultValue={loadedRepresentatives[0]}
                         />
-                        <Input
+                        { loadedCustomer.hasRepresentation &&(<Input
                             id="hasRepresentation"
                             element="input"
-                            label="hasRepresentation"
+                            label="Representation Status"
                             onInput={inputHandler}
                             validators={[]}
                             initialValid={true}
-                            initialValue={loadedCustomer.hasRepresentation}
                             disabled={true}
-                        />
+                            initialValue={loadedCustomer.hasRepresentation}
+                        />)}
                         <hr/>
                         <Button type="submit" disabled={!formState.isValid}>
                             UPDATE CUSTOMER
