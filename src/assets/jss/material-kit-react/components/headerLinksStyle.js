@@ -33,6 +33,9 @@ const headerLinksStyle = theme => ({
       }
     }
   },
+  link: {
+    textDecoration: "none"
+  },
   listItemText: {
     padding: "0 !important"
   },

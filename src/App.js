@@ -17,6 +17,9 @@ const App = () => {
     if (token) {
         routes = (
             <Switch>
+                <Route path="/landing-page">
+                    <LandingPage/>
+                </Route>
                 <Route path="/customers" exact>
                     <CustomerList/>
                 </Route>
@@ -30,7 +33,7 @@ const App = () => {
             </Switch>
         );
     }
-    // else {
+    else {
         routes = (
             <Switch>
                 <Route path="/login-page">
@@ -42,7 +45,7 @@ const App = () => {
                 <Redirect from="/" to="/landing-page"/>
             </Switch>
         );
-    // }
+    }
 
     return (
         <AuthContext.Provider
