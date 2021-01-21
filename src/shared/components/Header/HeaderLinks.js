@@ -27,52 +27,50 @@ const useStyles = makeStyles(styles);
 export default function HeaderLinks(props) {
     const classes = useStyles();
     const {token, login, logout, userId} = useAuth();
+    console.log(token)
 
     return (
         <React.Fragment>
-        <List className={classes.list}>
-            {!(window.location.href.indexOf("login-page") > -1) && <ListItem className={classes.listItem}>
-                <Link to={"/login-page"} className={classes.link}>
-                <Button color="primary" size="lg" simple>
-                    <Person className={classes.icons}/> Log in
-                </Button>
-                </Link>
-            </ListItem>}
-            <ListItem className={classes.listItem}>
-                <Link to={"/landing-page"} className={classes.link}>
-                    <Button color="primary" size="lg" simple>
-                        <Home className={classes.icons}/> Home
-                    </Button>
-                </Link>
-            </ListItem>
-            <ListItem className={classes.listItem}>
+            <List className={classes.list}>
+                {!(window.location.href.indexOf("login-page") > -1) && !token && <ListItem className={classes.listItem}>
+                    <Link to={"/login-page"} className={classes.link}>
+                        <Button color="primary" size="lg" simple>
+                            <Person className={classes.icons}/> Log in
+                        </Button>
+                    </Link>
+                </ListItem>}
+                {!(window.location.href.indexOf("login-page") > -1) && !token && <ListItem className={classes.listItem}>
+                    <Link to={"/landing-page"} className={classes.link}>
+                        <Button color="primary" size="lg" simple>
+                            <Home className={classes.icons}/> Home
+                        </Button>
+                    </Link>
+                </ListItem>}
+                {!(window.location.href.indexOf("signup-page") > -1)&& !token &&
                 <ListItem className={classes.listItem}>
                     <Link to={"/landing-page"} className={classes.link}>
                         <Button color="primary" size="lg" simple>
                             <PersonAdd className={classes.icons}/> Sign up
                         </Button>
                     </Link>
-                </ListItem>
-            </ListItem>
-            <ListItem className={classes.listItem}>
+                </ListItem>}
+                {token &&
                 <ListItem className={classes.listItem}>
                     <Link to={"/customers"} className={classes.link}>
                         <Button color="primary" size="lg" simple>
                             <PersonAdd className={classes.icons}/> Customers
                         </Button>
                     </Link>
-                </ListItem>
-            </ListItem>
-            <ListItem className={classes.listItem}>
+                </ListItem>}
+                {token &&
                 <ListItem className={classes.listItem}>
                     <Link to={"/customer"} className={classes.link}>
                         <Button color="primary" size="lg" simple>
                             <PersonAdd className={classes.icons}/> Add Customer
                         </Button>
                     </Link>
-                </ListItem>
-            </ListItem>
-        </List>
+                </ListItem>}
+            </List>
         </React.Fragment>
     );
 }
