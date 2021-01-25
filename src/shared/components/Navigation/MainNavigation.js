@@ -16,76 +16,135 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import AuthNavLinks from "./AuthNavLinks";
 import './NavLinks.css'
+import classNames from 'classnames'
 import green from "@material-ui/core/colors/green";
 import {AuthContext} from "../../context/auth-context";
 import CustomerNavLinks from "../../../pages/Navigation/CustomerNavLinks";
 import Header from "../Header/Header";
 import HeaderLinks from "../Header/HeaderLinks";
+import Button from "../CustomButtons/Button";
+import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import bgImage from "../../../assets/img/sidebar-2.jpg";
+import {blackColor, whiteColor} from "../../../assets/jss/material-kit-react";
+import CustomerList from "../../../pages/Customer/CustomerList";
 
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
-    // root: {
-    //     display: 'flex',
-    // },
-    // appBar: {
-    //     transition: theme.transitions.create(['margin', 'width'], {
-    //         easing: theme.transitions.easing.sharp,
-    //         duration: theme.transitions.duration.leavingScreen,
-    //     }),
-    //
-    // },
-    // appBarShift: {
-    //     width: `calc(100% - ${drawerWidth}px)`,
-    //     marginLeft: drawerWidth,
-    //     transition: theme.transitions.create(['margin', 'width'], {
-    //         easing: theme.transitions.easing.easeOut,
-    //         duration: theme.transitions.duration.enteringScreen,
-    //     }),
-    // },
-    // menuButton: {
-    //     marginRight: theme.spacing(2),
-    //     // display: "none"
-    // },
-    // hide: {
-    //     display: 'none',
-    // },
-    // drawer: {
-    //     width: drawerWidth,
-    //     flexShrink: 0,
-    // },
-    // drawerPaper: {
-    //     width: drawerWidth,
-    //     // backgroundImage: 'url(' + "https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg" + ')'
-    // },
-    // drawerHeader: {
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     padding: theme.spacing(0, 1),
-    //     // necessary for content to be below app bar
-    //     ...theme.mixins.toolbar,
-    //     justifyContent: 'flex-end',
-    // },
-    // content: {
-    //     flexGrow: 1,
-    //     padding: theme.spacing(3),
-    //     transition: theme.transitions.create('margin', {
-    //         easing: theme.transitions.easing.sharp,
-    //         duration: theme.transitions.duration.leavingScreen,
-    //     }),
-    //     marginLeft: -drawerWidth,
-    // },
-    // contentShift: {
-    //     transition: theme.transitions.create('margin', {
-    //         easing: theme.transitions.easing.easeOut,
-    //         duration: theme.transitions.duration.enteringScreen,
-    //     }),
-    //     marginLeft: 0,
-    // }, rightToolbar: {
-    //     marginLeft: "auto",
-    //     marginRight: -12
-    // }
+    root: {
+        display: 'flex',
+    },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginRight: 36,
+    },
+    hide: {
+        display: 'none',
+    },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+    },
+    drawerOpen: {
+        width: drawerWidth,
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    drawerClose: {
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        overflowX: 'hidden',
+        width: theme.spacing(7) + 1,
+        [theme.breakpoints.up('sm')]: {
+            width: theme.spacing(9) + 1,
+        },
+    },
+    drawerPaper: {
+        width: drawerWidth,
+        backgroundImage: 'url(' + bgImage + ')',
+        zIndex: "1",
+        height: "100%",
+        display: "block",
+        top: "0",
+        left: "0",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        // "&:before": {
+        //     position: "absolute",
+        //     zIndex: "3",
+        //     width: "100%",
+        //     height: "100%",
+        //     content: '""',
+        //     display: "inline",
+        //     background: blackColor,
+        //     opacity: ".6"
+        // }
+    },
+    toolbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    }, rightToolbar: {
+        marginLeft: "auto",
+        marginRight: -12
+    },
+    background: {
+        position: "absolute",
+        zIndex: "1",
+        height: "100%",
+        width: "100%",
+        display: "block",
+        top: "0",
+        left: "0",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        "&:after": {
+            position: "absolute",
+            zIndex: "1",
+            width: "100%",
+            height: "100%",
+            content: '""',
+            display: "block",
+            background: blackColor,
+            opacity: ".5"
+        }
+    },
+    searchWrapper: {
+        [theme.breakpoints.down("md")]: {
+            width: "-webkit-fill-available",
+            margin: "10px 15px 0"
+        },
+        display: "inline-block"
+    }
 }));
+
 
 const MainNavigation = props => {
     const auth = useContext(AuthContext);
@@ -101,70 +160,68 @@ const MainNavigation = props => {
         setOpen(false);
     };
     return (
-        <div >
+        <div className={classes.root}>
             <CssBaseline/>
-            {/*<Header*/}
-            {/*    absolute*/}
-            {/*    color="transparent"*/}
-            {/*    brand="Material Kit React"*/}
-            {/*    rightLinks={<HeaderLinks />}*/}
-            {/*/>*/}
-                {/*{...rest}*/}
-            {/*<AppBar*/}
-            {/*    position="fixed"*/}
-            {/*    className={clsx(classes.appBar, {*/}
-            {/*        [classes.appBarShift]: open,*/}
-            {/*    })}*/}
-            {/*>*/}
-            {/*    <Toolbar>*/}
-            {/*        { auth.isLoggedIn &&*/}
-            {/*        <div>*/}
-            {/*        <IconButton*/}
-            {/*            color="inherit"*/}
-            {/*            aria-label="open drawer"*/}
-            {/*            onClick={handleDrawerOpen}*/}
-            {/*            edge="start"*/}
-
-            {/*            className={clsx(classes.menuButton, open && classes.hide)}*/}
-            {/*        >*/}
-            {/*            <MenuIcon/>*/}
-            {/*        </IconButton>*/}
-            {/*        </div>}*/}
-            {/*        <Typography variant="h6" noWrap>*/}
-            {/*            Welcome, please { auth.isLoggedIn ? 'enjoy!' : 'login!'}*/}
-            {/*        </Typography>*/}
-            {/*        <section className={classes.rightToolbar}>*/}
-            {/*            <AuthNavLinks/>*/}
-            {/*        </section>*/}
-            {/*    </Toolbar>*/}
-            {/*</AppBar>*/}
-            {/*<Drawer*/}
-            {/*    className={classes.drawer}*/}
-            {/*    variant="persistent"*/}
-            {/*    anchor="left"*/}
-            {/*    open={open}*/}
-            {/*    classes={{*/}
-            {/*        paper: classes.drawerPaper,*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <div className={classes.drawerHeader}>*/}
-            {/*        <IconButton onClick={handleDrawerClose}>*/}
-            {/*            {theme.direction === 'ltr' ? <ChevronLeftIcon  style={{ color: green[500] }}/> : <ChevronRightIcon  style={{ color: green[500] }}/>}*/}
-            {/*        </IconButton>*/}
-            {/*    </div>*/}
-            {/*    <Divider/>*/}
-            {/*    <List>*/}
-            {/*        <CustomerNavLinks/>*/}
-            {/*    </List>*/}
-            {/*</Drawer>*/}
-            <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
+            <AppBar
+                position="fixed"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
                 })}
             >
-                <div className={classes.drawerHeader}/>
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        className={clsx(classes.menuButton, {
+                            [classes.hide]: open,
+                        })}
+                    >
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="h6" className={classes.title}>
+                        News
+                    </Typography>
+                    <section className={classes.rightToolbar}>
+                        <AuthNavLinks/>
+                    </section>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                variant="permanent"
+                className={clsx(classes.drawer, {
+                    [classes.drawerOpen]: open,
+                    [classes.drawerClose]: !open,
+                })}
+                classes={{
+                    paper: clsx({
+                        [classes.drawerOpen]: open,
+                        [classes.drawerClose]: !open,
+                        [classes.drawerPaper]: open
+                    })
+                }}
+            >
 
-            </main>
+                {/*<div*/}
+                {/*    className={classes.background}*/}
+                {/*    style={{ backgroundImage: "url(" + bgImage + ")" }}*/}
+                {/*/>*/}
+                <div className={classes.toolbar}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'rtl' ? <ChevronRightIcon style={{color: whiteColor}}/> :
+                            <ChevronLeftIcon style={{color: blackColor}}/>}
+                    </IconButton>
+                </div>
+                {/*<div className={classes.searchWrapper}>*/}
+                    <CustomerNavLinks/>
+                {/*</div>*/}
+                {/*<div className={classes.background} style={{backgroundImage: "url(" + bgImage + ")"}}/>*/}
+            </Drawer>
+            {/*<div className={classes.content}>*/}
+            {/*    <div className={classes.container}>{switchRoutes}</div>*/}
+            {/*</div>*/}
+                <CustomerList/>
         </div>
     );
 };

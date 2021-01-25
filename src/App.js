@@ -8,44 +8,30 @@ import AddCustomer from "./pages/Customer/AddCustomer";
 import CustomerList from "./pages/Customer/CustomerList";
 import UpdateCustomer from "./pages/Customer/UpdateCustomer";
 import LandingPage from "./pages/LandingPage";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
+import routes from "./routes.js";
+    console.log(routes)
+const switchRoutes = (
+    <Switch>
+        {routes.map((prop, key) => {
+            if (prop.layout === "/admin") {
+                return (
+                    <Route
+                        // path={prop.layout + prop.path}
+                        path={prop.path}
+                        component={prop.component}
+                        key={key}
+                    />
+                );
+            }
+            return null;
+        })}
+        <Redirect from="/" to="/dashboard" />
+    </Switch>
+);
 const App = () => {
     const {token, login, logout, userId} = useAuth();
-
-    let routes;
-
-    if (token) {
-        routes = (
-            <Switch>
-                <Route path="/landing-page">
-                    <LandingPage/>
-                </Route>
-                <Route path="/customers" exact>
-                    <CustomerList/>
-                </Route>
-                <Route path="/customer" exact>
-                    <AddCustomer/>
-                </Route>
-                <Route path="/customers/:customerId">
-                    <UpdateCustomer/>
-                </Route>
-                {/*<Redirect from="/auth" to="/customers"/>*/}
-            </Switch>
-        );
-    }
-    else {
-        routes = (
-            <Switch>
-                <Route path="/login-page">
-                    <Auth/>
-                </Route>
-                <Route path="/landing-page">
-                    <LandingPage/>
-                </Route>
-                <Redirect from="/" to="/landing-page"/>
-            </Switch>
-        );
-    }
 
     return (
         <AuthContext.Provider
@@ -58,8 +44,8 @@ const App = () => {
             }}
         >
             <Router>
-                <MainNavigation/>
-                <main>{routes}</main>
+                <CssBaseline/>
+                {switchRoutes}
             </Router>
         </AuthContext.Provider>
     );
